@@ -4,14 +4,14 @@ Sinh viên thực hiện: Nguyễn Danh Nhân
 MSV: 25023506
 Lớp: 2627I_UET.CS1058_8
 
-## 1. Mục đích thí nghiệm
+## 1. Mục đích thực nghiệm
 
-Mergesort và Quicksort có chung một cải tiến là CUTOFF dùng Insertion sort đối với mảng độ dài nhỏ. Tuy vậy, với mỗi cấu hình máy sẽ có một giá trị CUTOFF tương ứng phù hợp với cấu hình đó. Vì thế nên tôi thực hiện so sánh, đo thời gian sắp xếp khi cải tiến CUTOFF với các giá trị khác nhau của MergeSort và chọn ra ngưỡng phù hợp nhất với cấu hình máy cá nhân và bộ dữ liệu dùng để thí nghiệm. 
+Mergesort và Quicksort có chung một cải tiến là CUTOFF dùng Insertion sort đối với mảng độ dài nhỏ. Tuy vậy, với mỗi cấu hình máy sẽ có một giá trị CUTOFF tương ứng phù hợp với cấu hình đó. Vì thế nên tôi thực hiện so sánh, đo thời gian sắp xếp khi cải tiến CUTOFF với các giá trị khác nhau của MergeSort và chọn ra ngưỡng phù hợp nhất với cấu hình máy cá nhân và bộ dữ liệu dùng để thực nghiệm. 
 Với mỗi giá trị CUTOFF dương K, cương trình sẽ thực hiện InsertionSort cho mảng có độ dài từ 2 đến K. CUTOFF 0 sẽ chạy MergeSort thuần và dùng đấy làm mốc đối chứng.
 
-## 2. Thiết lập thí nghiệm
+## 2. Thiết lập thực nghiệm
 
-**Cấu hình máy tính thực hiện thí nghiệm:**
+**Cấu hình máy tính thực hiện thực nghiệm:**
 CPU: 13th Gen Intel(R) Core(TM) i7-13650HX (20 CPUs), ~2.6GHz
 Hệ điều hành: Windows 11 Home Single Language 64-bit (10.0, Build 26300)
 RAM: 32GB
@@ -188,7 +188,7 @@ Trong các ngưỡng đã thử, CUTOFF 24 hoặc 36 phù hợp nhất với m�
 **Số liệu dùng để chọn:** 
 Dựa vào thời gian trung vị của 10 lượt đo cho mỗi tổ hợp độ dài mảng, kiểu mảng và CUTOFF ở vòng 2. Trong 36 trường hợp, nhóm CUTOFF từ 48-72 có 16 trường hợp đứng đầu riêng và 3 trường hợp đồng hạng nhất. CUTOFF 48 nhanh nhất với mảng toàn số âm dài 10.000 phần tử (476,10 µs), CUTOFF 60 nhanh nhất với mảng ngẫu nhiên dài 1.000 phần tử (13,335 µs), còn CUTOFF 72 nhanh nhất với mảng ngẫu nhiên dài 100.000 phần tử (6.180,95 µs). Đây là cơ sở để chọn 48, 60 và 72 làm các ngưỡng mặc định có thể thử. Riêng với mảng giảm dần từ 100 phần tử trở lên, số liệu đang nghiêng về nhóm CUTOFF từ 24-36
 **Phạm vi áp dụng**:
-Cấu hình máy như ở phần thiết lập thí nghiệm, chạy full hiệu năng
+Cấu hình máy như ở phần thiết lập thực nghiệm, chạy full hiệu năng
 Merge dùng Arrays.copyOfRange để copy mảng kết hợp với InsertionSort
 Bộ dữ liệu ngẫu nhiên, tăng dần, giảm dần, số âm, số dương và nằm trong 1 khoảng hẹp
 
