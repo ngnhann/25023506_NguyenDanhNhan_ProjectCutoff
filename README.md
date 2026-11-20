@@ -1,29 +1,40 @@
 # Project CUTOFF MergeSort
 
-Sinh viên thực hiện: Nguyễn Danh Nhân
-MSV: 25023506
-Lớp: 2627I_UET.CS1058_8
+- Sinh viên thực hiện: Nguyễn Danh Nhân
+- MSV: 25023506
+- Lớp: 2627I_UET.CS1058_8
 
 ## 1. Mục đích thực nghiệm
 
-Mergesort và Quicksort có chung một cải tiến là CUTOFF dùng Insertion sort đối với mảng độ dài nhỏ. Tuy vậy, với mỗi cấu hình máy sẽ có một giá trị CUTOFF tương ứng phù hợp với cấu hình đó. Vì thế nên tôi thực hiện so sánh, đo thời gian sắp xếp khi cải tiến CUTOFF với các giá trị khác nhau của MergeSort và chọn ra ngưỡng phù hợp nhất với cấu hình máy cá nhân và bộ dữ liệu dùng để thực nghiệm. 
+Mergesort và Quicksort có chung một cải tiến là CUTOFF dùng Insertion sort đối với mảng độ dài nhỏ. Tuy vậy, với mỗi cấu hình máy sẽ có một giá trị CUTOFF tương ứng phù hợp với cấu hình đó. Vì thế nên tôi thực hiện so sánh, đo thời gian sắp xếp khi cải tiến CUTOFF với các giá trị khác nhau của MergeSort và chọn ra ngưỡng phù hợp nhất với cấu hình máy cá nhân và bộ dữ liệu dùng để thực nghiệm.
+
 Với mỗi giá trị CUTOFF dương K, cương trình sẽ thực hiện InsertionSort cho mảng có độ dài từ 2 đến K. CUTOFF 0 sẽ chạy MergeSort thuần và dùng đấy làm mốc đối chứng.
 
 ## 2. Thiết lập thực nghiệm
 
-**Cấu hình máy tính thực hiện thực nghiệm:**
-CPU: 13th Gen Intel(R) Core(TM) i7-13650HX (20 CPUs), ~2.6GHz
-Hệ điều hành: Windows 11 Home Single Language 64-bit (10.0, Build 26300)
-RAM: 32GB
-**Môi trường chạy:** 
+- **Cấu hình máy tính thực hiện thực nghiệm:**
+  + CPU: 13th Gen Intel(R) Core(TM) i7-13650HX (20 CPUs), ~2.6GHz
+  + Hệ điều hành: Windows 11 Home Single Language 64-bit (10.0, Build 26300)
+  + RAM: 32GB
+
+**Môi trường chạy:**
+
 Oracle Open JDK 25.0.2
-**Dữ liệu đầu vào:** 
+
+**Dữ liệu đầu vào:**
+
 Các mảng có độ dài lần lượt là 10, 100, 1000, 10000, 100000, 1000000. Mỗi độ dài có 6 mảng lần lượt là random, số dương, số âm, tăng dần, giảm dần, sinh trong khoảng hẹp. Được chứa trong 6 file CSV đầu vào nằm trong thư mục data.
+
 Ghi thêm cách sinh dữ liệu và seed tại đây …
-**Phương pháp đo thời gian:** 
+
+**Phương pháp đo thời gian:**
+
 Mỗi kiểu mảng, độ dài mảng và CUTOFFF có 5 lượt làm nóng JVM và 10 lượt đo để lấy số liệu. BenchMark đọc dữ liệu và tạo bản sao trước khi bấm giờ bằng System.nanoTime(). Sau khi dừng bấm giờ, chương trình sẽ kiểm tra lại mảng kết quả
-**Tổng hợp và xử lý số liệu:** 
+
+**Tổng hợp và xử lý số liệu:**
+
 `time_ns` là thời gian trung bình cho một lần sắp xếp trong lượt đo đó. Mỗi ô trong bảng đại diện cho trung vị của 10 giá trị time_ns của cùng 1 kiểu độ dài mảng, kiểu mảng và CUTOFF. Xác định giá trị thấp nhất của 1 hàng bằng số trung vị chưa làm tròn của mỗi ô, sau đó được in đậm.
+
 ## 3. Vòng 1 — So sánh các CUTOFF ban đầu
 
 Đo CUTOFF `0`, `7`, `10`, `24`, `36`, `48` và `60`. Mỗi bảng ứng với một độ dài mảng, mỗi hàng ứng với một kiểu đầu vào, mỗi cột tương ứng với 1 CUTOFF
@@ -97,10 +108,15 @@ Mỗi kiểu mảng, độ dài mảng và CUTOFFF có 5 lượt làm nóng JVM 
 | Khoảng hẹp `[-3, 3]` | 63002.5 | 41531.9 | 39116.35 | 32013.45 | **29959.6** | 30326.9 | 30652.85 |
 
 ### Nhận xét vòng 1
+
 CUTOFF `60` có thời gian trung vị thấp nhất ở 13/36 trường hợp và đồng hạng ở 1 trường hợp. Với mảng ngẫu nhiên dài 100.000 phần tử, thời gian giảm từ 8.459,55 µs ở CUTOFF `0` xuống 5.996,65 µs ở CUTOFF `60`, tương đương giảm khoảng 29,1%.
+
 **Ngưỡng phù hợp thay đổi theo kiểu mảng và độ dài:**
-CUTOFF `24` nhanh nhất cho mảng giảm dần ở cả năm kích thước từ 100 đến 1.000.000 phần tử. 
+
+CUTOFF `24` nhanh nhất cho mảng giảm dần ở cả năm kích thước từ 100 đến 1.000.000 phần tử.
+
 Với mảng ngẫu nhiên dài 1.000.000 phần tử, CUTOFF `48` có trung vị thấp nhất, còn CUTOFF `36` nhanh nhất trên mảng toàn số âm, mảng tăng dần và mảng khoảng hẹp ở cùng kích thước.
+
 CUTOFF `7` xếp sau ngưỡng nhanh nhất ở cả 36 trường hợp. CUTOFF `10` chỉ đồng hạng nhanh nhất trên mảng tăng dần dài 10 phần tử. Vì vậy, loại `7` và `10` ở vòng 2, giữ `0` làm đối chứng và giữ `24`, `36`, `48`, `60` để so sánh với hai ngưỡng lớn hơn là `72` và `84`.
 
 ## 4. Vòng 2 — Đo thêm với các CUTOFF 72 và 84
@@ -176,28 +192,41 @@ Chạy `MergeSortBenchmarkRound2` từ thư mục gốc dự án. Kết quả v�
 | Khoảng hẹp `[-3, 3]` | 64978.15 | 42507.25 | **37075.3** | 40305.3 | 42960 | 46122.4 | 39919.5 |
 
 ### Nhận xét vòng 2:
+
 CUTOFF `72` và `84` mỗi ngưỡng có thời gian trung vị thấp nhất ở 7/36 trường hợp. Ngoài ra, `72` đồng hạng ở 2 trường hợp và `84` đồng hạng ở 1 trường hợp. Với mảng ngẫu nhiên dài 1.000.000 phần tử, thời gian giảm từ 152.537,35 µs ở CUTOFF `0` xuống 97.492,7 µs ở CUTOFF `84`, tương đương giảm khoảng 36,1%.
+
 **Ngưỡng phù hợp thay đổi theo kiểu mảng và độ dài**
+
 Với mảng giảm dần từ 100 đến 1.000.000 phần tử, CUTOFF nhanh nhất là `24` hoặc `36` tùy kích thước. Ở độ dài 1.000.000 phần tử, CUTOFF `84` nhanh nhất với mảng ngẫu nhiên và mảng toàn số âm, `72` nhanh nhất với mảng toàn số dương, còn `36` nhanh nhất với mảng có giá trị trong khoảng hẹp.
+
 So với ngưỡng tốt nhất trong nhóm giữ lại (`0`, `24`, `36`, `48`, `60`) đo trong cùng vòng, ít nhất một trong hai ngưỡng mới cho thời gian thấp hơn ở 14/36 trường hợp và đồng hạng ở 3/36 trường hợp. Kết quả cho thấy `72` và `84` phù hợp với một số kiểu đầu vào, trong khi các ngưỡng nhỏ hơn vẫn cho kết quả tốt nhất ở nhiều trường hợp, đặc biệt với mảng giảm dần.
 
 ## 5. Kết luận
-**Nhận xét chung:** 
+
+**Nhận xét chung:**
+
 Trong các ngưỡng đã thử, CUTOFF 24 hoặc 36 phù hợp nhất với mảng giảm dần từ 100 phần tử. Với mảng độ dài trung bình, 48 và 60 là các ứng viên đáng cân nhắc. Với mảng lớn, 72 và 84 thường cho thời gian thấp nhất, nhưng lựa chọn cụ thể còn phụ thuộc vào kiểu đầu vào.
+
 **Đề xuất CUTOFF cho cấu hình máy thực nghiệm:** 48-72
-**Số liệu dùng để chọn:** 
+
+**Số liệu dùng để chọn:**
+
 Dựa vào thời gian trung vị của 10 lượt đo cho mỗi tổ hợp độ dài mảng, kiểu mảng và CUTOFF ở vòng 2. Trong 36 trường hợp, nhóm CUTOFF từ 48-72 có 16 trường hợp đứng đầu riêng và 3 trường hợp đồng hạng nhất. CUTOFF 48 nhanh nhất với mảng toàn số âm dài 10.000 phần tử (476,10 µs), CUTOFF 60 nhanh nhất với mảng ngẫu nhiên dài 1.000 phần tử (13,335 µs), còn CUTOFF 72 nhanh nhất với mảng ngẫu nhiên dài 100.000 phần tử (6.180,95 µs). Đây là cơ sở để chọn 48, 60 và 72 làm các ngưỡng mặc định có thể thử. Riêng với mảng giảm dần từ 100 phần tử trở lên, số liệu đang nghiêng về nhóm CUTOFF từ 24-36
+
 **Phạm vi áp dụng**:
-Cấu hình máy như ở phần thiết lập thực nghiệm, chạy full hiệu năng
-Merge dùng Arrays.copyOfRange để copy mảng kết hợp với InsertionSort
-Bộ dữ liệu ngẫu nhiên, tăng dần, giảm dần, số âm, số dương và nằm trong 1 khoảng hẹp
+
+- Cấu hình máy như ở phần thiết lập thực nghiệm, chạy full hiệu năng
+- Merge dùng Arrays.copyOfRange để copy mảng kết hợp với InsertionSort
+- Bộ dữ liệu ngẫu nhiên, tăng dần, giảm dần, số âm, số dương và nằm trong 1 khoảng hẹp
 
 ## 6. Cách chạy lại và tệp nộp
 
 Mở PowerShell ở thư mục gốc dự án, nơi có `pom.xml` và thư mục `data`. Dùng JDK 25 để biên dịch và chạy JUnit.
+
 ```powershell
 mvn -pl mergesort test
 ```
+
 Chọn lệnh tương ứng với vòng bạn muốn đo. Trước khi đo, chương trình in số vòng, các CUTOFF và đường dẫn file CSV.
 
 | Vòng | Lệnh chạy | File kết quả |
