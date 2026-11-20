@@ -8,6 +8,7 @@
 **Thời gian trao đổi:** Từ 19 đến 20/11/2026
 
 ## 1. Phạm vi sử dụng AI
+
 Tôi dùng Codex để phân tích đề, thảo luận cách thiết kế thí nghiệm, rà soát mã, hỗ trợ sửa cấu hình Maven và IntelliJ, viết chương trình benchmark, kiểm tra CSV và trình bày kết quả trong README. Tôi tự viết bản Mergesort gốc theo bài giảng, viết bộ test ban đầu và chương trình sinh dữ liệu, sau đó bổ sung Insertion Sort và tham số CUTOFF. Tôi quyết định cách tổ chức dữ liệu, chọn các ngưỡng cần thử và trực tiếp chạy các lần đo dùng trong báo cáo. Codex thực hiện các lần chạy kiểm tra riêng để xác nhận mã biên dịch được, sắp xếp đúng và ghi CSV theo định dạng đã thống nhất.
 
 ## 2. Tóm tắt các giai đoạn trao đổi thực tế
@@ -33,4 +34,4 @@ Tôi chạy benchmark chính thức. Codex kiểm tra CSV có đủ 2.520 dòng 
 ### 2.5. Ngày 20/11 — Thực hiện vòng 2 và tổng hợp kết quả
 
 Tôi quyết định bỏ `7` và `10`, giữ `0`, `24`, `36`, `48`, `60` và thử thêm `72`, `84`. Codex tạo lớp chạy riêng cho vòng 2 và dùng chung quy trình đo với vòng 1. Đường dẫn đầu ra ban đầu bị đặt nhầm. Sau khi tôi chỉ ra, Codex chuyển file đã đo vào `results/timming2.csv` và cập nhật cách chạy để mỗi vòng in rõ tên vòng, danh sách CUTOFF và đường dẫn kết quả. Sau khi tách hai lớp chạy, cả 9 phương thức JUnit đều pass. [Chương trình benchmark](../mergesort/src/main/java/MergeSortBenchmark.java) · [Số liệu vòng 2](../results/timming2.csv)
-Tôi gửi bảng trung vị để điền vào README. Theo phản hồi của tôi, Codex hoàn tác lần điền bảng vòng 2 đầu tiên, sau đó đọc lại file tôi gửi và đối chiếu từng ô theo độ dài, kiểu mảng và CUTOFF. Tôi nhờ Codex viết nhận xét vòng 2 theo bố cục vòng 1 và thảo luận phần kết luận. Hai ngưỡng mới `72` và `84` cải thiện trung vị ở 14/36 trường hợp so với ngưỡng nhanh nhất trong nhóm giữ lại, khi so sánh trong cùng vòng. Tôi chọn `48`, `60`, `72` làm các ngưỡng đề xuất để thử trước trên bộ dữ liệu này. Với mảng giảm dần từ 100 phần tử trở lên, kết quả vòng 2 nghiêng về `24` hoặc `36`. [Bảng trung vị vòng 2](../results/bangTrungViKetQua2.csv) · [Báo cáo thực nghiệm](../README.md)
+Tôi gửi bảng trung vị để điền vào README. Theo phản hồi của tôi, Codex hoàn tác lần điền bảng vòng 2 đầu tiên, sau đó đọc lại file tôi gửi và đối chiếu từng ô theo độ dài, kiểu mảng và CUTOFF. Tôi viết nhận xét vòng 2 theo bố cục vòng 1 và thảo luận phần kết luận. Hai ngưỡng mới `72` và `84` cải thiện trung vị ở 14/36 trường hợp so với ngưỡng nhanh nhất trong nhóm giữ lại, khi so sánh trong cùng vòng. Tôi chọn `48`, `60`, `72` làm các ngưỡng đề xuất để thử trước trên bộ dữ liệu này. Với mảng giảm dần từ 100 phần tử trở lên, kết quả vòng 2 nghiêng về `24` hoặc `36`. [Bảng trung vị vòng 2](../results/bangTrungViKetQua2.csv) · [Báo cáo thực nghiệm](../README.md)
