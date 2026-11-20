@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 // Các test này kiểm tra kết quả sắp xếp của từng cutoff.
 public class MergeSortTest {
-    private static final int[] CUTOFFS = {0, 7, 10, 24};
+    private static final int[] CUTOFFS = {0, 7, 10, 24, 36, 48, 60};
 
     @Test
     void testNormalArray() {

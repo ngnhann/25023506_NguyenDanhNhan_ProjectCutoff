@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class GenerateInput {
     public static void main(String[] args) throws IOException {
-        int[] sizes = {10, 100, 1_000, 10_000, 100_000};
+        int[] sizes = {10, 100, 1_000, 10_000, 100_000, 1_000_000};
         Random rng = new Random(42);
 
         for (int n : sizes) {
