@@ -123,7 +123,7 @@ CUTOFF `7` xếp sau ngưỡng nhanh nhất ở cả 36 trường hợp. CUTOFF 
 
 Vòng 2 dùng cùng bộ dữ liệu và quy trình đo của vòng 1. Danh sách CUTOFF là `0`, `24`, `36`, `48`, `60`, `72` và `84`.
 
-Chạy `MergeSortBenchmarkRound2` từ thư mục gốc dự án. Kết quả vòng này ghi vào [Kết quả đo vòng 2](results/timings2.csv). Mỗi ô trong bảng lấy trung vị từ 10 lượt đo của vòng 2 và đổi sang µs.
+Chạy `MergeSortBenchmarkRound2` từ thư mục gốc dự án. Kết quả vòng này ghi vào [Kết quả đo vòng 2](results/timming2.csv). Mỗi ô trong bảng lấy trung vị từ 10 lượt đo của vòng 2 và đổi sang µs.
 
 ### Mảng dài 10 phần tử
 
